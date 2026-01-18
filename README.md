@@ -49,7 +49,7 @@
   - Set Volume 100%
 
 ## Installing
-1. Download the compiled "gen_WAG15x86.dll" (or "gen_WAG15x64.dll" if you use x64 version WACUP) from the [Releases](https://github.com/Nazar-166/WAg15/releases)
+1. Download the compiled "gen_WAG15x86.dll" (or "gen_WAG15x64.dll" if you use x64 version WACUP) from the [Releases](https://github.com/inserti550/WAg15/releases/)
 2. Log in to Winamp, go to the "Plug-ins" section, there you will see the path by which your Winamp recognizes plugins (default this "C:\Program Files (x86)\Winamp\Plugins\")
 3. Put file in your Winamp plugins folder
 4. Restart Winamp, if it's running
@@ -71,3 +71,9 @@
 
 
 <img width="539" height="74" alt="image" src="https://github.com/user-attachments/assets/6f936ea1-5e90-4096-8b0f-dc2e795ed435" />
+
+## TODO
+- [x] Add progress bar
+- [ ] Display volume changes instead of progress bar.
+- [ ] Add "Random Song" to the Action List
+- [ ] Add more customization options
