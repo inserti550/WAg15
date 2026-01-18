@@ -51,6 +51,8 @@
 
 ## Settings
 <img width="617" height="555" alt="image" src="https://github.com/user-attachments/assets/af971625-7fb6-42a2-890f-80998957e481" />
+
+
 1. Song name
 2. Elapsed song time
 3. Progress bar
@@ -60,4 +62,6 @@
 7. Volume change step for "Volume Up" and "Volume Down" actions
 8. Time for register long press
 9. Filled progress bar
+
+
 <img width="539" height="74" alt="image" src="https://github.com/user-attachments/assets/6f936ea1-5e90-4096-8b0f-dc2e795ed435" />
