@@ -1,0 +1,4 @@
+LIBRARY	"gen_WAG15"
+
+EXPORTS
+    winampGetGeneralPurposePlugin @1

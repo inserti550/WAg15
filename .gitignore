@@ -1,0 +1,9 @@
+.vs/
+Debug/
+Release/
+*.obj
+*.log
+*.pdb
+*.user
+WAG15/Release/
+WAG15/Debug/
