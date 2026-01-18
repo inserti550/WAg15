@@ -43,7 +43,7 @@
   - Set Volume 100%
 
 ## Installing
-1. Download the compiled "gen_g15.dll" from the [Releases](https://github.com/Nazar-166/WAg15/releases)
+1. Download the compiled "gen_WAG15x86.dll" (or "gen_WAG15x64.dll" if you use x64 version WACUP) from the [Releases](https://github.com/Nazar-166/WAg15/releases)
 2. Log in to Winamp, go to the "Plug-ins" section, there you will see the path by which your Winamp recognizes plugins (default this "C:\Program Files (x86)\Winamp\Plugins\")
 3. Put file in your Winamp plugins folder
 4. Restart Winamp, if it's running
