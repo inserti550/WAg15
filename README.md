@@ -1,5 +1,11 @@
-
 # WAg15
+
+![License](https://img.shields.io/github/license/inserti550/WAg15)
+![Last Commit](https://img.shields.io/github/last-commit/inserti550/WAg15)
+
+![Latest Release](https://img.shields.io/github/v/release/inserti550/WAg15)
+![Downloads](https://img.shields.io/github/downloads/inserti550/WAg15/total)
+
 **WAg15** - Winamp plugin for Logitech monochrome LCD, that allows you to control the player using soft buttons and view player statistics on the LCD screen
 
 > Supports Russian and English output languages.
