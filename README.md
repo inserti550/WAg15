@@ -12,7 +12,7 @@
 
 > Now support WACUP x86 and x64.
 
-**Latest release:** https://github.com/Nazar-166/WAg15/releases/
+**Latest release:** https://github.com/inserti550/WAg15/releases/
 
 ## Demo
 
