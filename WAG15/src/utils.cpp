@@ -236,11 +236,6 @@ inline const char* ToCp(const wchar_t* wstr) {
     return buffer;
 }
 
-ScrollingText trackTitle(160, 100);
-StaticText ElapsedTime(FontType::FONT_3X6);
-StaticText GenTime(FontType::FONT_3X6);
-static wchar_t lastTrack[256] = L"";
-
 void utils::DrawTimeBar(BYTE* buffer, int progress) {
     if (progress < 0) progress = 0;
     if (progress > 100) progress = 100;
@@ -282,6 +277,12 @@ void utils::DrawTimeBar(BYTE* buffer, int progress) {
     
 }
 
+ScrollingText trackTitle(160, 150);
+StaticText ElapsedTime(FontType::FONT_3X6);
+StaticText GenTime(FontType::FONT_3X6);
+StaticText SymState(FontType::SYMBOL_3X6);
+static wchar_t lastTrack[256] = L"";
+
 void CALLBACK utils::MainLoop(HWND hwnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTime) {
     int buttons[] = { LOGI_LCD_MONO_BUTTON_0, LOGI_LCD_MONO_BUTTON_1, LOGI_LCD_MONO_BUTTON_2, LOGI_LCD_MONO_BUTTON_3 };
     for (int i = 0; i < 4; ++i) {
@@ -319,6 +320,7 @@ void CALLBACK utils::MainLoop(HWND hwnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTi
     wchar_t *Trackname = Winamp::GetPlaylistTitleW(TrackID);
     int TrackElapsed = Winamp::GetTrackTime(Winamp::OUTPUTTIME::TrackElapsed);
     int TracLength = Winamp::GetTrackTime(Winamp::OUTPUTTIME::TrackLengthms);
+    int TrackState = Winamp::IsPlay();
     int progress = 0;
     if (TracLength > 0) {
         progress = (TrackElapsed * 100) / TracLength;
@@ -334,17 +336,35 @@ void CALLBACK utils::MainLoop(HWND hwnd, UINT uMsg, UINT_PTR idEvent, DWORD dwTi
 
     utils::DrawTimeBar(settings::lcdBuffer, progress);
 
-    trackTitle.Draw(settings::lcdBuffer, 160, 43);
+    trackTitle.Draw(settings::lcdBuffer);
 
     char bufElap[16], bufGen[16];
     sprintf_s(bufElap, "%d:%02d", (TrackElapsed / 1000) / 60, (TrackElapsed / 1000) % 60);
     sprintf_s(bufGen, "%d:%02d", (TracLength / 1000) / 60, (TracLength / 1000) % 60);
 
     ElapsedTime.SetText(bufElap, 1, 30);
-    ElapsedTime.Draw(settings::lcdBuffer, 160, 43); 
+    ElapsedTime.Draw(settings::lcdBuffer); 
 
     GenTime.SetText(bufGen, 1, 30);
-    GenTime.DrawRight(settings::lcdBuffer, 160, 43, 157, 30);
+    GenTime.DrawRight(settings::lcdBuffer, 157, 30);
+
+    switch (TrackState)
+    {
+    case 1:
+        SymState.SetText("\x01",80,30);
+        break;
+    case 3:
+        SymState.SetText("\x02", 80, 30);
+        break;
+    case 0:
+        SymState.SetText("\x00", 80, 30);
+        break;
+    default:
+        SymState.SetText("\x00", 80, 30);
+        break;
+    }
+
+    SymState.DrawCenter(settings::lcdBuffer, 80, 30);
 
     LogiLcdMonoSetBackground(settings::lcdBuffer);
     LogiLcdUpdate();

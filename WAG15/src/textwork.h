@@ -3,10 +3,12 @@
 
 extern const BYTE font5x7[][5];
 extern const BYTE font3x6[][3];
+extern const BYTE symbol3x6[][3];
 
 enum FontType {
     FONT_5X7,
-    FONT_3X6
+    FONT_3X6,
+    SYMBOL_3X6
 };
 
 class TextRender {
@@ -50,35 +52,38 @@ public:
     }
 
 protected:
-    void DrawString(BYTE* screen, int w, int h, int startX, int startY, const char* str) {
+    void DrawString(BYTE* screen, int startX, int startY, const char* str) {
         int offset = 0;
         const unsigned char* s = (const unsigned char*)str;
 
         while (*s) {
-            if (startX + offset + cWidth > 0 && startX + offset < w) {
-                DrawChar(screen, w, h, startX + offset, startY, *s);
+            if (startX + offset + cWidth > 0 && startX + offset < 160) {
+                DrawChar(screen, startX + offset, startY, *s);
             }
             offset += cWidth + cSpace;
             s++;
         }
     }
 
-    void DrawChar(BYTE* screen, int w, int h, int x, int y, unsigned char ch) {
+    void DrawChar(BYTE* screen, int x, int y, unsigned char ch) {
         if (currentFont == FONT_5X7) {
-            Draw5x7(screen, w, h, x, y, ch);
+            Draw5x7(screen, x, y, ch);
+        }
+        else if (currentFont == SYMBOL_3X6) {
+            DrawSymbol3x6(screen, x, y, ch);
         }
         else {
-            Draw3x6(screen, w, h, x, y, ch);
+            Draw3x6(screen, x, y, ch);
         }
     }
 
-    inline void SetPixel(BYTE* screen, int w, int h, int x, int y) {
-        if (x >= 0 && x < w && y >= 0 && y < h) {
-            screen[y * w + x] = 255;
+    inline void SetPixel(BYTE* screen, int x, int y) {
+        if (x >= 0 && x < 160 && y >= 0 && y < 43) {
+            screen[y * 160 + x] = 255;
         }
     }
 
-    void Draw5x7(BYTE* screen, int w, int h, int x, int y, unsigned char ch) {
+    void Draw5x7(BYTE* screen, int x, int y, unsigned char ch) {
         int idx = -1;
         if (ch >= 32 && ch <= 126) idx = ch - 32;
         else if (ch >= 0xC0 && ch <= 0xDF) idx = ch - 0xC0 + 95;
@@ -90,34 +95,51 @@ protected:
 
         for (int col = 0; col < 5; col++) {
             int drawX = x + col;
-            if (drawX < 0 || drawX >= w) continue;
+            if (drawX < 0 || drawX >= 160) continue;
 
             BYTE pixels = font5x7[idx][col];
             for (int row = 0; row < 7; row++) {
                 if (pixels & (1 << row)) {
-                    SetPixel(screen, w, h, drawX, y + row);
+                    SetPixel(screen, drawX, y + row);
                 }
             }
         }
         if (ch == 0xA8 || ch == 0xB8) {
-            SetPixel(screen, w, h, x + 1, y - 2);
-            SetPixel(screen, w, h, x + 3, y - 2);
+            SetPixel(screen, x + 1, y - 2);
+            SetPixel(screen, x + 3, y - 2);
         }
     }
 
-    void Draw3x6(BYTE* screen, int w, int h, int x, int y, unsigned char ch) {
+    void Draw3x6(BYTE* screen, int x, int y, unsigned char ch) {
         int idx = -1;
         if (ch >= 32 && ch <= 126) idx = ch - 32;
         if (idx < 0 || idx >= 95) return;
 
         for (int col = 0; col < 3; col++) {
             int drawX = x + col;
-            if (drawX < 0 || drawX >= w) continue;
+            if (drawX < 0 || drawX >= 160) continue;
 
             BYTE pixels = font3x6[idx][col];
             for (int row = 0; row < 6; row++) {
                 if (pixels & (1 << row)) {
-                    SetPixel(screen, w, h, drawX, y + row);
+                    SetPixel(screen, drawX, y + row);
+                }
+            }
+        }
+    }
+
+    void DrawSymbol3x6(BYTE* screen, int x, int y, unsigned char ch) {
+        int idx = ch;
+        if (idx < 0 || idx >= 3) return;
+
+        for (int col = 0; col < 3; col++) {
+            int drawX = x + col;
+            if (drawX < 0 || drawX >= 160) continue;
+
+            BYTE buffer = symbol3x6[idx][col];
+            for (int row = 0; row < 6; row++) {
+                if (buffer & (1 << row)) {
+                    SetPixel(screen, drawX, y + row);
                 }
             }
         }
@@ -128,18 +150,18 @@ class StaticText : public TextRender {
 public:
     StaticText(FontType font = FONT_5X7) : TextRender(font) {}
 
-    void Draw(BYTE* screen, int w, int h) {
-        DrawString(screen, w, h, posX, posY, text);
+    void Draw(BYTE* screen) {
+        DrawString(screen, posX, posY, text);
     }
-    void DrawCenter(BYTE* screen, int w, int h, int centerX, int y) {
+    void DrawCenter(BYTE* screen, int centerX, int y) {
         int width = GetTextWidth();
         int x = centerX - width / 2;
-        DrawString(screen, w, h, x, y, text);
+        DrawString(screen, x, y, text);
     }
-    void DrawRight(BYTE* screen, int w, int h, int rightX, int y) {
+    void DrawRight(BYTE* screen, int rightX, int y) {
         int width = GetTextWidth();
         int x = rightX - width;
-        DrawString(screen, w, h, x, y, text);
+        DrawString(screen, x, y, text);
     }
 };
 
@@ -212,12 +234,12 @@ public:
         }
     }
 
-    void Draw(BYTE* screen, int w, int h) {
+    void Draw(BYTE* screen) {
         if (!scrollflag) {
-            DrawString(screen, w, h, posX + (screenWidth - TextWidth) / 2, posY, text);
+            DrawString(screen, posX + (screenWidth - TextWidth) / 2, posY, text);
         }
         else {
-            DrawString(screen, w, h, posX - sPos, posY, text);
+            DrawString(screen, posX - sPos, posY, text);
         }
     }
 };

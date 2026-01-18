@@ -55,6 +55,7 @@
   </ItemGroup>
   <ItemGroup>
     <Library Include="LogitechLCDLib.lib" />
+    <Library Include="LogitechLCDLib64.lib" />
   </ItemGroup>
   <ItemGroup>
     <None Include="plugin.def">

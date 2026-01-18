@@ -1,5 +1,9 @@
 #include "utils.h"
+#ifdef _WIN64
+#pragma comment(lib, "LogitechLCDLib64.lib")
+#else
 #pragma comment(lib, "LogitechLCDLib.lib")
+#endif
 #include "../lib/LogitechLCDLib.h" 
 
 int init();
@@ -8,23 +12,19 @@ void quit();
 
 winampGeneralPurposePlugin plugin = {
     GPPHDR_VER,
-    (char *)"G15 plugin",
+    (char *)"WAg15",
     init,
     config,
     quit,
+    0,
+    0
 };
 
-#ifdef __cplusplus
 extern "C" {
-#endif
-
     __declspec(dllexport) winampGeneralPurposePlugin* winampGetGeneralPurposePlugin() {
         return &plugin;
     }
-
-#ifdef __cplusplus
 }
-#endif
 
 int init() {
 
