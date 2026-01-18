@@ -10,6 +10,9 @@
 
 ## Demo
 
+![demo](https://github.com/user-attachments/assets/4c625a2e-6a6a-4b64-9610-f4f57370c94a)
+
+<img width="160" height="43" alt="LCDScreen_0118_132110" src="https://github.com/user-attachments/assets/d31b0c51-50d3-423b-ba75-02e4d1edc2a5" />
 
 ## At the moment the plugin has
 1. Display song title
