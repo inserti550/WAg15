@@ -12,13 +12,9 @@
 
 > Now support WACUP x86 and x64.
 
+<img width="520" height="665" alt="image" src="https://github.com/user-attachments/assets/bd0b1c22-aa96-4866-84be-ea76351393f7" />
+
 **Latest release:** https://github.com/inserti550/WAg15/releases/
-
-## Demo
-
-![demo](https://github.com/user-attachments/assets/4c625a2e-6a6a-4b64-9610-f4f57370c94a)
-
-<img width="160" height="43" alt="LCDScreen_0118_132110" src="https://github.com/user-attachments/assets/d31b0c51-50d3-423b-ba75-02e4d1edc2a5" />
 
 ## At the moment the plugin has
 1. Display song title
@@ -55,22 +51,7 @@
 4. Restart Winamp, if it's running
 5. Congratulation! you install this plugin. Configure the plugin for yourself in the General Purpose section -> G15 plugin!
 
-## Settings
-<img width="617" height="555" alt="image" src="https://github.com/user-attachments/assets/af971625-7fb6-42a2-890f-80998957e481" />
-
-
-1. Song name
-2. Elapsed song time
-3. Progress bar
-4. Total song time
-5. Action when normally pressing a soft buttons
-6. Action when long pressing soft buttons
-7. Volume change step for "Volume Up" and "Volume Down" actions
-8. Time for register long press
-9. Filled progress bar
-
-
-<img width="539" height="74" alt="image" src="https://github.com/user-attachments/assets/6f936ea1-5e90-4096-8b0f-dc2e795ed435" />
+<img width="160" height="43" alt="LCDScreen_0118_131709" src="https://github.com/user-attachments/assets/0fff962b-810a-4e46-aae5-10ffb3b7586f" />
 
 ## TODO
 - [x] Add progress bar
