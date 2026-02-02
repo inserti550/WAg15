@@ -12,6 +12,8 @@
 
 > Now support WACUP x86 and x64.
 
+![demo](https://github.com/user-attachments/assets/829e11c4-9a76-4303-9978-2c2e69585d1a)
+
 <img width="520" height="665" alt="image" src="https://github.com/user-attachments/assets/bd0b1c22-aa96-4866-84be-ea76351393f7" />
 
 **Latest release:** https://github.com/inserti550/WAg15/releases/
