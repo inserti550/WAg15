@@ -1,4 +1,4 @@
-# WAg15
+<img width="359" height="441" alt="image" src="https://github.com/user-attachments/assets/3225423d-2baf-420a-bffb-e9272bc6784f" /># WAg15
 
 ![License](https://img.shields.io/github/license/inserti550/WAg15)
 ![Last Commit](https://img.shields.io/github/last-commit/inserti550/WAg15)
@@ -12,6 +12,8 @@
 > Now supports a large number of characters (using GDI renderer with "Small Fonts").
 
 ![demo](https://github.com/user-attachments/assets/829e11c4-9a76-4303-9978-2c2e69585d1a)
+
+<img width="399" height="581" alt="image" src="https://github.com/user-attachments/assets/77d8416b-24ba-4fd3-b16d-3e9725d2bc03" />
 
 <img width="520" height="665" alt="image" src="https://github.com/user-attachments/assets/bd0b1c22-aa96-4866-84be-ea76351393f7" />
 
@@ -54,8 +56,11 @@
 
 <img width="160" height="43" alt="LCDScreen_0118_131709" src="https://github.com/user-attachments/assets/0fff962b-810a-4e46-aae5-10ffb3b7586f" />
 
+<img width="359" height="441" alt="image" src="https://github.com/user-attachments/assets/28db1f1e-ba2a-4e08-abc0-67af2bfb40f4" />
+
 ## TODO
 - [x] Add progress bar
 - [ ] Display volume changes instead of progress bar.
 - [ ] Add "Random Song" to the Action List
 - [ ] Add more customization options
+- [ ] G19 skin selector (bento, modern, custom idk)
