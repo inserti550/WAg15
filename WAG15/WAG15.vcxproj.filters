@@ -30,10 +30,25 @@
     <ClInclude Include="lib\LogitechLCDLib.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\resource.h">
+    <ClInclude Include="src\render\textwork.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
-    <ClInclude Include="src\textwork.h">
+    <ClInclude Include="src\render\render.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\settings.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\winamp.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\pch.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\mainloop.h">
+      <Filter>Файлы заголовков</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UImanager.h">
       <Filter>Файлы заголовков</Filter>
     </ClInclude>
   </ItemGroup>
@@ -44,7 +59,13 @@
     <ClCompile Include="src\utils.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
-    <ClCompile Include="src\textwork.cpp">
+    <ClCompile Include="src\settings.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="src\render\render.cpp">
+      <Filter>Исходные файлы</Filter>
+    </ClCompile>
+    <ClCompile Include="src\mainloop.cpp">
       <Filter>Исходные файлы</Filter>
     </ClCompile>
   </ItemGroup>
@@ -63,7 +84,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\Pictures\timebar.bmp">
+    <Image Include="sprites\spritelistr.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="sprites\Main.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="sprites\NUMBERS.BMP">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="..\..\..\..\Desktop\spritelistr.bmp">
       <Filter>Файлы ресурсов</Filter>
     </Image>
   </ItemGroup>

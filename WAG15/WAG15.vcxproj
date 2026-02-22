@@ -181,14 +181,21 @@
     <ClInclude Include="lib\GEN.h" />
     <ClInclude Include="lib\LogitechLCDLib.h" />
     <ClInclude Include="lib\wa_ipc.h" />
+    <ClInclude Include="lib\winamp.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="src\resource.h" />
-    <ClInclude Include="src\textwork.h" />
+    <ClInclude Include="src\mainloop.h" />
+    <ClInclude Include="src\pch.h" />
+    <ClInclude Include="src\render\render.h" />
+    <ClInclude Include="src\render\textwork.h" />
+    <ClInclude Include="src\settings.h" />
+    <ClInclude Include="src\UImanager.h" />
     <ClInclude Include="src\utils.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\textwork.cpp" />
+    <ClCompile Include="src\mainloop.cpp" />
+    <ClCompile Include="src\render\render.cpp" />
+    <ClCompile Include="src\settings.cpp" />
     <ClCompile Include="src\utils.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -202,7 +209,10 @@
     <None Include="plugin.def" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\..\..\Pictures\timebar.bmp" />
+    <Image Include="..\..\..\..\Desktop\spritelistr.bmp" />
+    <Image Include="sprites\Main.bmp" />
+    <Image Include="sprites\NUMBERS.BMP" />
+    <Image Include="sprites\spritelistr.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

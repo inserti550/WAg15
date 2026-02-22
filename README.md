@@ -8,9 +8,8 @@
 
 **WAg15** - Winamp plugin for Logitech monochrome LCD, that allows you to control the player using soft buttons and view player statistics on the LCD screen
 
-> Supports Russian and English output languages.
-
-> Now support WACUP x86 and x64.
+> Now supports for G19 color display
+> Now supports a large number of characters (using GDI renderer with "Small Fonts").
 
 ![demo](https://github.com/user-attachments/assets/829e11c4-9a76-4303-9978-2c2e69585d1a)
 
