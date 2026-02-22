@@ -1,4 +1,4 @@
-<img width="359" height="441" alt="image" src="https://github.com/user-attachments/assets/3225423d-2baf-420a-bffb-e9272bc6784f" /># WAg15
+# WAg15
 
 ![License](https://img.shields.io/github/license/inserti550/WAg15)
 ![Last Commit](https://img.shields.io/github/last-commit/inserti550/WAg15)
