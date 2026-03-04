@@ -58,9 +58,11 @@
 
 <img width="359" height="441" alt="image" src="https://github.com/user-attachments/assets/28db1f1e-ba2a-4e08-abc0-67af2bfb40f4" />
 
+<img width="438" height="158" alt="image" src="https://github.com/user-attachments/assets/41681870-5739-460d-951c-8cda398de21a" />
+
 ## TODO
 - [x] Add progress bar
-- [ ] Display volume changes instead of progress bar.
+- [x] Display volume changes instead of progress bar.
 - [ ] Add "Random Song" to the Action List
 - [ ] Add more customization options
 - [ ] G19 skin selector (bento, modern, custom idk)
