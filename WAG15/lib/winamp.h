@@ -78,8 +78,7 @@ inline int SetVolume(int Volume) {
 }
 /* return volume on range 0-255 */
 inline int GetVolume() {
-  return (int)SendMessage(plugin.hwndParent, WM_WA_IPC, (WPARAM)-666,
-                          IPC_SETVOLUME);
+  return (int)SendMessage(plugin.hwndParent, WM_WA_IPC, (WPARAM)-666,IPC_SETVOLUME);
 }
 /* return playlist position */
 inline int GetListPosition() {

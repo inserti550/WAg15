@@ -4,9 +4,7 @@
 namespace render{
     void Preview(HWND hwndDlg, BYTE* buffer);
 
-    void DrawTimeBar(BYTE* buffer, int progress);
-
-    void SetPixelColor(unsigned char* buffer, int x, int y, BYTE r, BYTE g, BYTE b, BYTE a = 255);
+    void DrawTimeBar(BYTE* buffer, int progress, bool filled = false);
 
     void DrawFocusRect(unsigned char* buffer, int x, int y, int w, int h, COLORREF color);
 

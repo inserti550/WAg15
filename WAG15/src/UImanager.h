@@ -12,6 +12,8 @@ private:
 		bool PressEx[4] = { false, false, false, false };
 		float g_peaks[38] = { 0 };
 		float g_peakSpeed[38] = { 0 };
+        int LVol = -1;
+        ULONGLONG LVolUntil = GetTickCount64();
 	};
 	ScrollingText trackTitle;
 	LoopedScrollingText trackTitleColor;
@@ -197,16 +199,25 @@ public:
 
     void DrawUI() {
         if ((settings.cfg.type & LOGI_LCD_TYPE_MONO) && settings.cfg.enableMono) {
-
-            int progress = 0;
-            if (Winamp::GetTrackTime(Winamp::OUTPUTTIME::TrackLengthms) > 0) {
-                progress = (Winamp::GetTrackTime(Winamp::OUTPUTTIME::TrackElapsed) * 100) / Winamp::GetTrackTime(Winamp::OUTPUTTIME::TrackLengthms);
-            }
             trackTitle.Update();
 
             memset(lcdBuffer, 0, sizeof(lcdBuffer));
 
-            render::DrawTimeBar(lcdBuffer, progress);
+            int Volume = Winamp::GetVolume();
+            ULONGLONG thistime = GetTickCount64();
+            int percent = (Volume * 100) / 255;
+            if (Volume != this->global.LVol) {
+                this->global.LVol = Volume;
+                this->global.LVolUntil = thistime + 2000;
+            }
+
+            if (thistime < this->global.LVolUntil) {
+                
+                render::DrawTimeBar(lcdBuffer, percent, true);
+            }
+            else if (Winamp::GetTrackTime(Winamp::OUTPUTTIME::TrackLengthms) > 0) {
+                render::DrawTimeBar(lcdBuffer, (Winamp::GetTrackTime(Winamp::OUTPUTTIME::TrackElapsed) * 100) / Winamp::GetTrackTime(Winamp::OUTPUTTIME::TrackLengthms));
+            }
 
             trackTitle.Draw(lcdBuffer, false);
 
@@ -219,14 +230,22 @@ public:
 
             GenTime.SetText(bufGen, 158, 28);
             GenTime.DrawRight(lcdBuffer, 158, 28, false);
-
-            switch (Winamp::IsPlay()) {
-            case 1:  SymState.SetSymbol(1); break; // Play
-            case 3:  SymState.SetSymbol(2); break; // Pause
-            default: SymState.SetSymbol(0); break; // Stop
+            if (thistime < this->global.LVolUntil) {
+                wchar_t volBuf[16];
+                swprintf_s(volBuf, L"%d%%", percent);
+                SymState.SetText(volBuf);
+                SymState.DrawCenter(lcdBuffer, 78, 28, false);
             }
-            SymState.DrawCenter(lcdBuffer, 80, 28, false);
-
+            else
+            {
+                switch (Winamp::IsPlay()) {
+                case 1:  SymState.SetSymbol(1); break; // Play
+                case 3:  SymState.SetSymbol(2); break; // Pause
+                default: SymState.SetSymbol(0); break; // Stop
+                }
+                SymState.DrawCenter(lcdBuffer, 78, 30, false);
+                
+            }
             LogiLcdMonoSetBackground(lcdBuffer);
         }
         if ((settings.cfg.type & LOGI_LCD_TYPE_COLOR) && settings.cfg.enableColor) {

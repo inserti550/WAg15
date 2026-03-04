@@ -38,6 +38,7 @@ void utils::CommandProccess(int com)
     case 15: Winamp::SetVolume(127); break;
     case 16: Winamp::SetVolume(191); break;
     case 17: Winamp::SetVolume(255); break;
+    case 18: Winamp::SetVolume(255); break;
     default: break;
     }
 }

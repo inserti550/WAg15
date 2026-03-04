@@ -8,8 +8,6 @@ namespace render {
 
       RECT rect;
       GetClientRect(preview, &rect);
-      int W = rect.right - rect.left;
-      int H = rect.bottom - rect.top;
       int dib[160 * 43];
       for (int i = 0; i < 160 * 43; ++i) {
           BYTE px = 255 - buffer[i];
@@ -28,49 +26,32 @@ namespace render {
 
       SetStretchBltMode(dc, COLORONCOLOR);
 
-      StretchDIBits(dc, 0, 0, W, H, 0, 0, 160, 43, dib, &bmi, DIB_RGB_COLORS,
+      StretchDIBits(dc, 0, 0, rect.right - rect.left, rect.bottom - rect.top, 0, 0, 160, 43, dib, &bmi, DIB_RGB_COLORS,
                     SRCCOPY);
 
       ReleaseDC(preview, dc);
     }
 
-    void DrawTimeBar(BYTE *buffer, int progress) {
-      if (progress < 0)
-        progress = 0;
-      if (progress > 100)
-        progress = 100;
+    void DrawTimeBar(BYTE* buffer, int progress, bool filled) {
+        if (progress < 0) progress = 0;
+        if (progress > 100) progress = 100;
 
-      if (!settings.cfg.filledbar) {
         for (int y = 38; y <= 42; y++) {
-          for (int x = 0; x < 160; x++) {
-            int pIdx = y * 160 + x;
-            if (y == 38 || y == 42 || x == 0 || x == 159) {
-              buffer[pIdx] = logion;
-            } else {
-              if (x <= (progress * 158) / 100 && y >= 39 && y <= 41 &&
-                  ((x - 1) % 4 < 2)) {
-                buffer[pIdx] = logion;
-              } else {
-                buffer[pIdx] = logioff;
-              }
-            }
-          }
-        }
-      } else {
-        for (int y = 38; y <= 42; y++) {
-          for (int x = 0; x < 160; x++) {
-            int pIdx = y * 160 + x;
+            for (int x = 0; x < 160; x++) {
+                int pIdx = y * 160 + x;
+                if (y == 38 || y == 42 || x == 0 || x == 159) {
+                    buffer[pIdx] = 255;
+                    continue;
+                }
 
-            buffer[pIdx] = logion;
-            if (y >= 39 && y <= 41 && x > 0 && x <= (progress * 158) / 100) {
-
-              if ((x - 1) % 4 < 2) {
-                buffer[pIdx] = logioff;
-              }
+                if (x <= (progress * 157) / 100 && (filled || (x - 1) % 4 < 2)) {
+                    buffer[pIdx] = settings.cfg.filledbar ? 0 : 255;
+                }
+                else {
+                    buffer[pIdx] = settings.cfg.filledbar ? 255 : 0;
+                }
             }
-          }
         }
-      }
     }
 
     void DrawFocusRect(unsigned char *buffer, int x, int y, int w, int h,

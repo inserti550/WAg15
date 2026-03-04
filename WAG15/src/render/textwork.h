@@ -74,7 +74,8 @@ public:
 
     void SetSymbol(int symbolIdx) {
         ClearDC();
-        if (symbolIdx < 0 || symbolIdx > 2) return;
+        this->text = L"   ";
+        if (symbolIdx < 0 || symbolIdx > 3) return;
         for (int col = 0; col < 3; col++) {
             BYTE colData = symbol3x6_data[symbolIdx][col];
             for (int row = 0; row < 6; row++) {
