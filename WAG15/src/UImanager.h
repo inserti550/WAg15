@@ -206,7 +206,11 @@ public:
             int Volume = Winamp::GetVolume();
             ULONGLONG thistime = GetTickCount64();
             int percent = (Volume * 100) / 255;
-            if (Volume != this->global.LVol) {
+
+            if (this->global.LVol == -1) {
+                this->global.LVol = Volume;
+            }
+            else if (Volume != this->global.LVol) {
                 this->global.LVol = Volume;
                 this->global.LVolUntil = thistime + 2000;
             }
